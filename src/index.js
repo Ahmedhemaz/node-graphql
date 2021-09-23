@@ -3,8 +3,11 @@ import { GraphQLServer } from "graphql-yoga";
 // Types
 const typeDefs = `
     type Query {
-        hello: String!
-        name: String
+      id: ID!
+      name: String!
+      age: Int!
+      alive: Boolean!
+      gpa: Float!        
     }
 `;
 
@@ -12,8 +15,11 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    hello: () => "Hello World First Query!!!",
+    id: () => "123",
     name: () => "Ahmedhemaz",
+    age: () => 27,
+    alive: () => true,
+    gpa: () => "3.2",
   },
 };
 
