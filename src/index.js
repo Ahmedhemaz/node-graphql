@@ -3,23 +3,44 @@ import { GraphQLServer } from "graphql-yoga";
 // Types
 const typeDefs = `
     type Query {
+      me: User!
+      post: Post!
+    }
+
+    type User {
       id: ID!
       name: String!
-      age: Int!
-      alive: Boolean!
-      gpa: Float!        
+      email: String!
+      age: Int
+    }
+
+    type Post {
+      id: ID!
+      title: String!
+      body: String!
+      published: Boolean!
     }
 `;
 
+const user = {
+  id: "222",
+  name: "za8lol",
+  email: "za8lol@gmail.com",
+  age: 1,
+};
+
+const post = {
+  id: "1",
+  title: "El Sood 3yono",
+  body: "Ya Wala",
+  published: true,
+};
 // Resolvers
 
 const resolvers = {
   Query: {
-    id: () => "123",
-    name: () => "Ahmedhemaz",
-    age: () => 27,
-    alive: () => true,
-    gpa: () => "3.2",
+    me: () => user,
+    post: () => post,
   },
 };
 
