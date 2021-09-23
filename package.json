@@ -1,0 +1,22 @@
+{
+  "name": "graphql-basics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6"
+  },
+  "dependencies": {
+    "@babel/node": "^7.15.4",
+    "apollo-server": "^3.3.0",
+    "graphql": "^15.6.0"
+  }
+}
