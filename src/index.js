@@ -1,2 +1,1 @@
-import message from "./myModule";
-console.log(message);
+import { GraphQLServer } from "graphql-yoga";
