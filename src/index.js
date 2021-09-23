@@ -6,6 +6,8 @@ const typeDefs = `
       greeting(name: String!): String!
       me: User!
       post: Post!
+      grades: [Int!]!
+      add(numbers: [Int!]!): Float!
     }
 
     type User {
@@ -37,10 +39,18 @@ const post = {
   published: true,
 };
 // Resolvers
-
+const adder = (numbers) => {
+  if (numbers.length === 0) {
+    return 0.0;
+  } else {
+    return numbers.reduce((pv, cv) => cv + pv);
+  }
+};
 const resolvers = {
   Query: {
     greeting: (parent, args) => `Hello ${args.name}`,
+    grades: () => [1, 2, 3, 4, 5, 6],
+    add: (parent, args) => adder(args.numbers),
     me: () => user,
     post: () => post,
   },
