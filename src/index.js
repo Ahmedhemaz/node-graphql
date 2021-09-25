@@ -4,7 +4,7 @@ import { filterWithUserNameContains, getUserById } from "./queries/users/";
 import { getPostsByUserId, filterPostsContainsTestKeyWord, getPostById } from "./queries/posts";
 import { getCommentsByPostId, getCommentsByUserId } from "./queries/comments";
 import { createUser, deleteUser } from "./mutations/users";
-import { createPost } from "./mutations/posts";
+import { createPost, deletePostById } from "./mutations/posts";
 import { createComment } from "./mutations/comments";
 // Types
 const typeDefs = `
@@ -23,6 +23,7 @@ const typeDefs = `
       createUser(data: CreateUserInput!): User!
       deleteUser(id: ID!): User!
       createPost(data: CreatePostInput!): Post!
+      deletePost(id: ID!): Post!
       createComment(data: CreateCommentInput!): Comment!
     }
 
@@ -95,6 +96,7 @@ const resolvers = {
     createUser: (parent, args, ctx, info) => createUser(args.data),
     deleteUser: (parent, args, ctx, info) => deleteUser(args),
     createPost: (parent, args, ctx, info) => createPost(args.data),
+    deletePost: (parent, args, ctx, info) => deletePostById(args),
     createComment: (parent, args, ctx, info) => createComment(args.data),
   },
   Post: {
