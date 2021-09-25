@@ -1,5 +1,5 @@
 import { GraphQLServer } from "graphql-yoga";
-import { posts, users } from "./data";
+import { comments, posts, users } from "./data";
 import { filterWithUserNameContains } from "./queries/users/filter-users";
 import { filterPostsContainsTestKeyWord } from "./queries/posts/filter-posts";
 import { getUserById } from "./queries/users/get-user-by-id";
@@ -14,6 +14,7 @@ const typeDefs = `
       add(numbers: [Int!]!): Float!
       users(query:String): [User!]!
       posts(query:String): [Post!]
+      comments(query:String): [Comment!]!
     }
 
     type User {
@@ -30,6 +31,11 @@ const typeDefs = `
       body: String!
       published: Boolean!
       author: User!
+    }
+
+    type Comment {
+      id: ID!
+      body: String!
     }
 `;
 
@@ -50,6 +56,7 @@ const resolvers = {
     post: () => posts[0],
     users: (parent, args, ctx, info) => filterWithUserNameContains(users, args.query),
     posts: (parent, args, ctx, info) => filterPostsContainsTestKeyWord(posts, args.query),
+    comments: (parent, args, ctx, info) => comments,
   },
   Post: {
     author: (parent, args, ctx, info) => getUserById(users, parent.id),
