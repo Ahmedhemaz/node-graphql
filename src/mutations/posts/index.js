@@ -1,2 +1,3 @@
 import { createPost } from "./create-post";
-export { createPost };
+import { deletedUserPostsByUserId } from "./delete-user-posts-by-user-id";
+export { createPost, deletedUserPostsByUserId };

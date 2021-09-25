@@ -20,5 +20,6 @@ const post3 = {
   author: "3",
 };
 
-const posts = [post, post2, post3];
-export { posts };
+let posts = [post, post2, post3];
+const setPosts = (newPosts) => (posts = newPosts);
+export { posts, setPosts };

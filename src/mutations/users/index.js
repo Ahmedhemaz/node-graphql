@@ -1,2 +1,3 @@
 import { createUser } from "./create-user";
-export { createUser };
+import { deleteUser } from "./delete-user";
+export { createUser, deleteUser };

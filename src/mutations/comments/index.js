@@ -1,2 +1,3 @@
 import { createComment } from "./create-comment";
-export { createComment };
+import { deletedUserCommentsByUserId } from "./delete-user-comments-by-user-id";
+export { createComment, deletedUserCommentsByUserId };

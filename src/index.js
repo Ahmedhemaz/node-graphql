@@ -3,7 +3,7 @@ import { comments, posts, users } from "./data";
 import { filterWithUserNameContains, getUserById } from "./queries/users/";
 import { getPostsByUserId, filterPostsContainsTestKeyWord, getPostById } from "./queries/posts";
 import { getCommentsByPostId, getCommentsByUserId } from "./queries/comments";
-import { createUser } from "./mutations/users";
+import { createUser, deleteUser } from "./mutations/users";
 import { createPost } from "./mutations/posts";
 import { createComment } from "./mutations/comments";
 // Types
@@ -21,8 +21,9 @@ const typeDefs = `
 
     type Mutation {
       createUser(data: CreateUserInput!): User!
+      deleteUser(id: ID!): User!
       createPost(data: CreatePostInput!): Post!
-      createComment(data: CreateCommentInput!): Comment
+      createComment(data: CreateCommentInput!): Comment!
     }
 
     input CreateUserInput {
@@ -92,6 +93,7 @@ const resolvers = {
   },
   Mutation: {
     createUser: (parent, args, ctx, info) => createUser(args.data),
+    deleteUser: (parent, args, ctx, info) => deleteUser(args),
     createPost: (parent, args, ctx, info) => createPost(args.data),
     createComment: (parent, args, ctx, info) => createComment(args.data),
   },

@@ -1,4 +1,4 @@
-import { posts } from "./posts";
+import { posts, setPosts } from "./posts";
 import { users } from "./users";
-import { comments } from "./comments";
-export { users, posts, comments };
+import { comments, setComments } from "./comments";
+export { users, posts, comments, setComments, setPosts };

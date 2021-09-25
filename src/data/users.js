@@ -16,5 +16,5 @@ const user3 = {
   email: "Mohamedhemaz@gmail.com",
   age: 28,
 };
-const users = [user, user2, user3];
+let users = [user, user2, user3];
 export { users };
