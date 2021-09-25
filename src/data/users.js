@@ -1,17 +1,17 @@
 const user = {
-  id: "111",
+  id: "1",
   name: "za8lol",
   email: "za8lol@gmail.com",
   age: 1,
 };
 const user2 = {
-  id: "222",
+  id: "2",
   name: "Ahmedhemaz",
   email: "Ahmedhemaz@gmail.com",
   age: 27,
 };
 const user3 = {
-  id: "333",
+  id: "3",
   name: "Mohamedhemaz",
   email: "Mohamedhemaz@gmail.com",
   age: 28,
