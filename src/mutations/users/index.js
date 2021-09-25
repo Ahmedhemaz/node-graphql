@@ -1,3 +1,4 @@
 import { createUser } from "./create-user";
 import { deleteUser } from "./delete-user";
-export { createUser, deleteUser };
+import { updateUser } from "./update-user";
+export { createUser, deleteUser, updateUser };
