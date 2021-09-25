@@ -5,7 +5,9 @@ import { posts, users, comments } from "../../data";
 
 const createComment = ({ body, author, postId }) => {
   if (!getUserById(users, author)) throw new Error("User Does not exist!!");
-  if (!getPostById(posts, postId)) throw new Error("Post Does not exist!!");
+  const post = getPostById(posts, postId);
+  if (!post) throw new Error("Post Does not exist!!");
+  if (!post.published) throw new Error("Post Not published!!");
   const comment = {
     id: uuidv4(),
     body,
