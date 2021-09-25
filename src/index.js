@@ -3,6 +3,7 @@ import { posts, users } from "./data";
 import { filterWithUserNameContains } from "./queries/users/filter-users";
 import { filterPostsContainsTestKeyWord } from "./queries/posts/filter-posts";
 import { getUserById } from "./queries/users/get-user-by-id";
+import { getPostsByUserId } from "./queries/posts/get-posts-by-user-id";
 // Types
 const typeDefs = `
     type Query {
@@ -12,7 +13,7 @@ const typeDefs = `
       grades: [Int!]!
       add(numbers: [Int!]!): Float!
       users(query:String): [User!]!
-      posts(query:String): [Post!]!
+      posts(query:String): [Post!]
     }
 
     type User {
@@ -20,6 +21,7 @@ const typeDefs = `
       name: String!
       email: String!
       age: Int
+      posts: [Post!]!
     }
 
     type Post {
@@ -51,6 +53,9 @@ const resolvers = {
   },
   Post: {
     author: (parent, args, ctx, info) => getUserById(users, parent.id),
+  },
+  User: {
+    posts: (parent, args, ctx, info) => getPostsByUserId(posts, parent.id),
   },
 };
 

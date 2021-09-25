@@ -8,7 +8,7 @@ const post = {
 const post2 = {
   id: "2",
   title: "test 2",
-  body: "Ya Wala",
+  body: "Yala benaaaaaaaaaaaaaa",
   published: true,
   author: "2",
 };
