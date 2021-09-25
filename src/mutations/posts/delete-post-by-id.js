@@ -1,12 +1,11 @@
-import { posts, setComments } from "../../data";
 import { deletePostCommentsByPostId } from "../comments";
 
-const deletePostById = (args) => {
+const deletePostById = (db, args) => {
   const id = args.id;
-  const postIndex = posts.findIndex((post) => post.id === id);
+  const postIndex = db.posts.findIndex((post) => post.id === id);
   if (postIndex === -1) throw new Error("Post Does Not Exist");
-  const deletedPosts = posts.splice(postIndex, 1);
-  setComments(deletePostCommentsByPostId(id));
+  const deletedPosts = db.posts.splice(postIndex, 1);
+  db.comments = deletePostCommentsByPostId(id);
   return deletedPosts[0];
 };
 

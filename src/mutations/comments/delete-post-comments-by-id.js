@@ -1,5 +1,3 @@
-import { comments } from "../../data";
-
-const deletePostCommentsByPostId = (id) => comments.filter((comment) => comment.postId !== id);
+const deletePostCommentsByPostId = (db, id) => db.comments.filter((comment) => comment.postId !== id);
 
 export { deletePostCommentsByPostId };

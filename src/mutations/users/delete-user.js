@@ -2,13 +2,13 @@ import { users, setComments, setPosts } from "../../data";
 import { deletedUserCommentsByUserId } from "../comments";
 import { deletedUserPostsByUserId } from "../posts";
 
-const deleteUser = (args) => {
+const deleteUser = (db, args) => {
   const userId = args.id;
-  const userIndex = users.findIndex((user) => user.id === userId);
+  const userIndex = db.users.findIndex((user) => user.id === userId);
   if (userIndex === -1) throw new Error("User Does Not Exist!");
-  const deletedUsers = users.splice(userIndex, 1);
-  setPosts(deletedUserPostsByUserId(userId));
-  setComments(deletedUserCommentsByUserId(userId));
+  const deletedUsers = db.users.splice(userIndex, 1);
+  db.posts = deletedUserPostsByUserId(db, userId);
+  db.comments = deletedUserCommentsByUserId(db, userId);
   return deletedUsers[0];
 };
 

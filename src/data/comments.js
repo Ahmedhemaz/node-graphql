@@ -22,6 +22,5 @@ const comment4 = {
   author: "1",
   postId: "1",
 };
-let comments = [comment, comment2, comment3, comment4];
-const setComments = (newComments) => (comments = newComments);
-export { comments, setComments };
+const comments = [comment, comment2, comment3, comment4];
+export { comments };
