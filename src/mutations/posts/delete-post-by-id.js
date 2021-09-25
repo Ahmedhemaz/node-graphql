@@ -5,7 +5,7 @@ const deletePostById = (db, args) => {
   const postIndex = db.posts.findIndex((post) => post.id === id);
   if (postIndex === -1) throw new Error("Post Does Not Exist");
   const deletedPosts = db.posts.splice(postIndex, 1);
-  db.comments = deletePostCommentsByPostId(id);
+  db.comments = deletePostCommentsByPostId(db, id);
   return deletedPosts[0];
 };
 
