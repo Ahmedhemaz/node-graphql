@@ -1,5 +1,5 @@
 import { GraphQLServer } from "graphql-yoga";
-import { user, post, users, posts } from "./static-data";
+import { posts, users } from "./data";
 import { filterWithUserNameContains } from "./queries/filter-users";
 import { filterPostsContainsTestKeyWord } from "./queries/filter-posts";
 // Types
@@ -42,8 +42,8 @@ const resolvers = {
     greeting: (parent, args) => `Hello ${args.name}`,
     grades: () => [1, 2, 3, 4, 5, 6],
     add: (parent, args) => adder(args.numbers),
-    me: () => user,
-    post: () => post,
+    me: () => users[0],
+    post: () => posts[0],
     users: (parent, args, ctx, info) => filterWithUserNameContains(users, args.query),
     posts: (parent, args, ctx, info) => filterPostsContainsTestKeyWord(posts, args.query),
   },
