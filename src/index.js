@@ -2,7 +2,7 @@ import { GraphQLServer } from "graphql-yoga";
 import { comments, posts, users } from "./data";
 import { filterWithUserNameContains, getUserById } from "./queries/users/";
 import { getPostsByUserId, filterPostsContainsTestKeyWord, getPostById } from "./queries/posts";
-import { getCommentsByPostId } from "./queries/comments";
+import { getCommentsByPostId, getCommentsByUserId } from "./queries/comments";
 // Types
 const typeDefs = `
     type Query {
@@ -22,6 +22,7 @@ const typeDefs = `
       email: String!
       age: Int
       posts: [Post!]!
+      comments: [Comment!]!
     }
 
     type Post {
@@ -66,6 +67,7 @@ const resolvers = {
   },
   User: {
     posts: (parent, args, ctx, info) => getPostsByUserId(posts, parent.id),
+    comments: (parent, args, ctx, info) => getCommentsByUserId(comments, parent.id),
   },
   Comment: {
     author: (parent, args, ctx, info) => getUserById(users, parent.author),
