@@ -3,6 +3,7 @@ import { comments, posts, users } from "./data";
 import { filterWithUserNameContains, getUserById } from "./queries/users/";
 import { getPostsByUserId, filterPostsContainsTestKeyWord, getPostById } from "./queries/posts";
 import { getCommentsByPostId, getCommentsByUserId } from "./queries/comments";
+import { createUser } from "./mutations/users";
 // Types
 const typeDefs = `
     type Query {
@@ -14,6 +15,10 @@ const typeDefs = `
       users(query:String): [User!]!
       posts(query:String): [Post!]
       comments(query:String): [Comment!]!
+    }
+
+    type Mutation {
+      createUser(email: String!, name: String!, age: String): User!
     }
 
     type User {
@@ -60,6 +65,9 @@ const resolvers = {
     users: (parent, args, ctx, info) => filterWithUserNameContains(users, args.query),
     posts: (parent, args, ctx, info) => filterPostsContainsTestKeyWord(posts, args.query),
     comments: (parent, args, ctx, info) => comments,
+  },
+  Mutation: {
+    createUser: (parent, args, ctx, info) => createUser(users, args),
   },
   Post: {
     author: (parent, args, ctx, info) => getUserById(users, parent.author),
