@@ -1,4 +1,4 @@
-import { isEmailTaken } from "../validators";
+import { isEmailTaken } from "./validators";
 import { v4 as uuidv4 } from "uuid";
 
 const createUser = (users, { email, name, age }) => {
