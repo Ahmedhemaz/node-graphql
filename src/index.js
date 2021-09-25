@@ -20,10 +20,30 @@ const typeDefs = `
     }
 
     type Mutation {
-      createUser(email: String!, name: String!, age: String): User!
-      createPost(title: String!, body: String!, published: Boolean!, author: ID!): Post!
-      createComment(body: String!, postId: ID!, author:ID!): Comment
+      createUser(data: CreateUserInput!): User!
+      createPost(data: CreatePostInput!): Post!
+      createComment(data: CreateCommentInput!): Comment
     }
+
+    input CreateUserInput {
+      email: String!
+      name: String!
+      age: String
+    } 
+
+    input CreatePostInput {
+      title: String!
+      body: String!
+      published: Boolean!
+      author: ID!
+    }
+
+    input CreateCommentInput {
+      body: String!
+      postId: ID!
+      author:ID!
+    }
+
 
     type User {
       id: ID!
@@ -71,9 +91,9 @@ const resolvers = {
     comments: (parent, args, ctx, info) => comments,
   },
   Mutation: {
-    createUser: (parent, args, ctx, info) => createUser(args),
-    createPost: (parent, args, ctx, info) => createPost(args),
-    createComment: (parent, args, ctx, info) => createComment(args),
+    createUser: (parent, args, ctx, info) => createUser(args.data),
+    createPost: (parent, args, ctx, info) => createPost(args.data),
+    createComment: (parent, args, ctx, info) => createComment(args.data),
   },
   Post: {
     author: (parent, args, ctx, info) => getUserById(users, parent.author),

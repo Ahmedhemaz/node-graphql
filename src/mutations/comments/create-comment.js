@@ -8,7 +8,6 @@ const createComment = (args) => {
   const post = getPostById(posts, args.postId);
   if (!post) throw new Error("Post Does not exist!!");
   if (!post.published) throw new Error("Post Not published!!");
-  console.log(args);
   const comment = {
     id: uuidv4(),
     ...args,
