@@ -1,9 +1,9 @@
 import { GraphQLServer } from "graphql-yoga";
 import { comments, posts, users } from "./data";
 import { filterWithUserNameContains } from "./queries/users/filter-users";
-import { filterPostsContainsTestKeyWord } from "./queries/posts/filter-posts";
 import { getUserById } from "./queries/users/get-user-by-id";
-import { getPostsByUserId } from "./queries/posts/get-posts-by-user-id";
+import { getPostsByUserId, filterPostsContainsTestKeyWord, getPostById } from "./queries/posts";
+import { getCommentsByPostId } from "./queries/comments";
 // Types
 const typeDefs = `
     type Query {
@@ -31,12 +31,14 @@ const typeDefs = `
       body: String!
       published: Boolean!
       author: User!
+      comments:[Comment!]!
     }
 
     type Comment {
       id: ID!
       body: String!
       author: User!
+      post: Post!
     }
 `;
 
@@ -61,12 +63,14 @@ const resolvers = {
   },
   Post: {
     author: (parent, args, ctx, info) => getUserById(users, parent.author),
+    comments: (parent, args, ctx, info) => getCommentsByPostId(comments, parent.id),
   },
   User: {
     posts: (parent, args, ctx, info) => getPostsByUserId(posts, parent.id),
   },
   Comment: {
     author: (parent, args, ctx, info) => getUserById(users, parent.author),
+    post: (parent, args, ctx, info) => getPostById(posts, parent.postId),
   },
 };
 
