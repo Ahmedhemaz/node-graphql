@@ -1,10 +1,11 @@
 import { isEmailTaken } from "./validators";
 import { v4 as uuidv4 } from "uuid";
 const createUser = (db, args) => {
-  if (isEmailTaken(db.users, args.email)) throw new Error("Email is Taken");
+  const { data } = args;
+  if (isEmailTaken(db.users, data.email)) throw new Error("Email is Taken");
   const user = {
     id: uuidv4(),
-    ...args,
+    ...data,
   };
   db.users.push(user);
   return user;
