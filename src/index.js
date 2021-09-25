@@ -1,5 +1,6 @@
 import { GraphQLServer } from "graphql-yoga";
-
+import { user, post, users } from "./static-data";
+import { filterWithUserNameContains } from "./queries/filter-users";
 // Types
 const typeDefs = `
     type Query {
@@ -8,6 +9,7 @@ const typeDefs = `
       post: Post!
       grades: [Int!]!
       add(numbers: [Int!]!): Float!
+      users(query:String): [User!]!
     }
 
     type User {
@@ -25,19 +27,6 @@ const typeDefs = `
     }
 `;
 
-const user = {
-  id: "222",
-  name: "za8lol",
-  email: "za8lol@gmail.com",
-  age: 1,
-};
-
-const post = {
-  id: "1",
-  title: "El Sood 3yono",
-  body: "Ya Wala",
-  published: true,
-};
 // Resolvers
 const adder = (numbers) => {
   if (numbers.length === 0) {
@@ -53,6 +42,7 @@ const resolvers = {
     add: (parent, args) => adder(args.numbers),
     me: () => user,
     post: () => post,
+    users: (parent, args, ctx, info) => filterWithUserNameContains(users, args.query),
   },
 };
 
