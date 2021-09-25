@@ -36,6 +36,7 @@ const typeDefs = `
     type Comment {
       id: ID!
       body: String!
+      author: User!
     }
 `;
 
@@ -59,10 +60,13 @@ const resolvers = {
     comments: (parent, args, ctx, info) => comments,
   },
   Post: {
-    author: (parent, args, ctx, info) => getUserById(users, parent.id),
+    author: (parent, args, ctx, info) => getUserById(users, parent.author),
   },
   User: {
     posts: (parent, args, ctx, info) => getPostsByUserId(posts, parent.id),
+  },
+  Comment: {
+    author: (parent, args, ctx, info) => getUserById(users, parent.author),
   },
 };
 

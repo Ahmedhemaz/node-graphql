@@ -1,18 +1,22 @@
 const comment = {
   id: "1",
   body: "first comment",
+  author: "1",
 };
 const comment2 = {
   id: "2",
   body: "second comment",
+  author: "2",
 };
 const comment3 = {
   id: "3",
   body: "third comment",
+  author: "3",
 };
 const comment4 = {
   id: "4",
   body: "forth comment",
+  author: "1",
 };
 const comments = [comment, comment2, comment3, comment4];
 export { comments };
