@@ -1,7 +1,6 @@
 import { GraphQLServer } from "graphql-yoga";
 import { comments, posts, users } from "./data";
-import { filterWithUserNameContains } from "./queries/users/filter-users";
-import { getUserById } from "./queries/users/get-user-by-id";
+import { filterWithUserNameContains, getUserById } from "./queries/users/";
 import { getPostsByUserId, filterPostsContainsTestKeyWord, getPostById } from "./queries/posts";
 import { getCommentsByPostId } from "./queries/comments";
 // Types
