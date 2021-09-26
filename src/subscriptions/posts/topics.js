@@ -1,0 +1,2 @@
+const POST_CREATION = "POST_CREATION";
+export { POST_CREATION };
