@@ -15,7 +15,7 @@ const createComment = (ctx, args) => {
     ...data,
   };
   db.comments.push(comment);
-  pubsub.publish([COMMENT_CREATION(data.postId)], { comment });
+  pubsub.publish(COMMENT_CREATION(data.postId), { comment });
   return comment;
 };
 

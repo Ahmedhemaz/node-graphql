@@ -1,3 +1,4 @@
 import { POST_CREATION } from "./topics";
 import { post } from "./post-creation";
-export { POST_CREATION, post };
+import { POST_STATES } from "./post-mutation-states";
+export { POST_CREATION, post, POST_STATES };

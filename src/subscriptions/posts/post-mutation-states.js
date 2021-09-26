@@ -1,0 +1,7 @@
+const POST_STATES = {
+  DELETED: "DELETED",
+  UPDATED: "UPDATED",
+  CREATED: "CREATED",
+};
+
+export { POST_STATES };

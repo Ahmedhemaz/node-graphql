@@ -5,7 +5,7 @@ const comment = {
     const { postId } = args;
     const post = getPostById(db.posts, postId);
     if (!post || !post.published) throw new Error("Post Does Not Exist");
-    return pubsub.asyncIterator([COMMENT_CREATION(postId)]);
+    return pubsub.asyncIterator(COMMENT_CREATION(postId));
   },
 };
 
