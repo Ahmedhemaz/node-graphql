@@ -1,0 +1,5 @@
+export const COMMENT_STATES = {
+  CREATED: "CREATED",
+  UPDATED: "UPDATED",
+  DELETED: "DELETED",
+};

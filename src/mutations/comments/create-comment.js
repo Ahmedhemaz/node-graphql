@@ -2,6 +2,7 @@ import { getPostById } from "../../queries/posts";
 import { getUserById } from "../../queries/users";
 import { v4 as uuidv4 } from "uuid";
 import { COMMENT_CREATION } from "../../subscriptions/comments/topic";
+import { COMMENT_STATES } from "../../subscriptions/comments";
 
 const createComment = (ctx, args) => {
   const { data } = args;
@@ -15,7 +16,12 @@ const createComment = (ctx, args) => {
     ...data,
   };
   db.comments.push(comment);
-  pubsub.publish(COMMENT_CREATION(data.postId), { comment });
+  pubsub.publish(COMMENT_CREATION(data.postId), {
+    comment: {
+      mutation: COMMENT_STATES.CREATED,
+      data: comment,
+    },
+  });
   return comment;
 };
 

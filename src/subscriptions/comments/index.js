@@ -1,4 +1,4 @@
 import { COMMENT_CREATION } from "./topic";
 import { comment } from "./comment-creation";
-
-export { comment, COMMENT_CREATION };
+import { COMMENT_STATES } from "./comment-states";
+export { comment, COMMENT_CREATION, COMMENT_STATES };
