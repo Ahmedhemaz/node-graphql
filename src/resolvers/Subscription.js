@@ -1,4 +1,5 @@
 import { count } from "../subscriptions";
-const Subscription = { count };
+import { comment } from "../subscriptions/comments";
+const Subscription = { count, comment };
 
 export { Subscription };

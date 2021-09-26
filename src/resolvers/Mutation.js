@@ -8,7 +8,7 @@ const Mutation = {
   createPost: (parent, args, { db }, info) => createPost(db, args),
   updatePost: (parent, args, { db }, info) => updatePost(db, args),
   deletePost: (parent, args, { db }, info) => deletePostById(db, args),
-  createComment: (parent, args, { db }, info) => createComment(db, args),
+  createComment: (parent, args, ctx, info) => createComment(ctx, args),
   updateComment: (parent, args, { db }, info) => updateComment(db, args),
   deleteComment: (parent, args, { db }, info) => deleteCommentById(db, args),
 };
