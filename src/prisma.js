@@ -16,7 +16,20 @@ const getUser = async (userId) => {
   );
 };
 
+const isUserExist = async (userId) => {
+  return await prisma.exists.User({
+    id: userId,
+  });
+};
+const isPostExist = async (postId) => {
+  return await prisma.exists.Post({
+    id: postId,
+  });
+};
+
 const createPostForUser = async (authorId, data) => {
+  const userExist = await isUserExist(authorId);
+  if (!userExist) throw new Error("User Does Not Exist");
   const post = await prisma.mutation.createPost(
     {
       data: {
@@ -28,12 +41,13 @@ const createPostForUser = async (authorId, data) => {
         },
       },
     },
-    "{id title body}"
+    "{id title body author{id name}}"
   );
-  return getUser(authorId);
 };
 
 const updatePostForUser = async (data, postId) => {
+  const postExists = await isPostExist(postId);
+  if (!postExists) throw new Error("Post Does Not Exist");
   return await prisma.mutation.updatePost(
     {
       data: {
@@ -47,19 +61,8 @@ const updatePostForUser = async (data, postId) => {
   );
 };
 
-// createPostForUser("cku4fefsv016y0a113656qbgh", {
-//   title: "ah Post Ya wala",
-//   body: "The la la land ya 3m el 7ag",
-//   published: true,
-// }).then((data) => console.log(data));
-
-updatePostForUser(
-  {
-    title: "ah Post Ya wala edited2",
-    body: "The la la land ya 3m el 7ag edited2",
-    published: true,
-  },
-  "cku5hjzlw000309119gkgblb6"
-).then((data) => console.log(data));
+// updatePostForUser({ published: true }, "cku5hjzlw000309119gkgblb6")
+//   .then((data) => console.log(data))
+//   .catch((error) => console.log(error));
 
 export default prisma;
