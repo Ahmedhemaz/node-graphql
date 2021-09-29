@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --ext js,graphql src/index.js  --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "get-schema": "graphql get-schema -p prisma"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +18,11 @@
   },
   "dependencies": {
     "@babel/node": "^7.15.4",
-    "graphql-yoga": "^1.16.7",
+    "@graphql-cli/codegen": "^2.1.2",
+    "@graphql-codegen/schema-ast": "^2.2.0",
+    "graphql-cli": "^2.16.4",
+    "graphql-yoga": "^1.14.10",
+    "prisma-binding": "^2.1.1",
     "uuid": "^8.3.2"
   }
 }
