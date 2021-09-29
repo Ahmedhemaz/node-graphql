@@ -61,8 +61,4 @@ const updatePostForUser = async (data, postId) => {
   );
 };
 
-// updatePostForUser({ published: true }, "cku5hjzlw000309119gkgblb6")
-//   .then((data) => console.log(data))
-//   .catch((error) => console.log(error));
-
 export default prisma;
