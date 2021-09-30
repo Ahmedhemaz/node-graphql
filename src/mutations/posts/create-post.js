@@ -1,7 +1,5 @@
-import { getUserById } from "../../queries/users";
-import { v4 as uuidv4 } from "uuid";
 import { POST_CREATION, POST_STATES } from "../../subscriptions/posts";
-const createPost = async (parent, args, ctx, info) => {
+const createPost = async ({ parent, args, ctx, info }) => {
   const { data } = args;
   const { prisma, pubsub } = ctx;
   const userExists = await prisma.exists.User({
