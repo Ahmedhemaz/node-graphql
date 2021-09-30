@@ -1,15 +1,21 @@
-import { users, setComments, setPosts } from "../../data";
 import { deletedUserCommentsByUserId } from "../comments";
 import { deletedUserPostsByUserId } from "../posts";
 
-const deleteUser = (db, args) => {
+const deleteUser = async ({ parent, args, ctx, info }) => {
+  const { prisma } = ctx;
   const userId = args.id;
-  const userIndex = db.users.findIndex((user) => user.id === userId);
-  if (userIndex === -1) throw new Error("User Does Not Exist!");
-  const deletedUsers = db.users.splice(userIndex, 1);
-  db.posts = deletedUserPostsByUserId(db, userId);
-  db.comments = deletedUserCommentsByUserId(db, userId);
-  return deletedUsers[0];
+  const userExists = await prisma.exists.User({
+    id: userId,
+  });
+  if (!userExists) throw new Error("User Does Not Exist!");
+  return await prisma.mutation.deleteUser(
+    {
+      where: {
+        id: userId,
+      },
+    },
+    info
+  );
 };
 
 export { deleteUser };
