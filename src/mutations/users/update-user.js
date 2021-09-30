@@ -1,6 +1,3 @@
-import { getUserById } from "../../queries/users";
-import { isEmailTaken } from "./validators";
-
 const updateUser = async ({ parent, args, ctx, info }) => {
   const { id, data } = args;
   const { prisma } = ctx;

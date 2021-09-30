@@ -1,6 +1,3 @@
-import { deletedUserCommentsByUserId } from "../comments";
-import { deletedUserPostsByUserId } from "../posts";
-
 const deleteUser = async ({ parent, args, ctx, info }) => {
   const { prisma } = ctx;
   const userId = args.id;

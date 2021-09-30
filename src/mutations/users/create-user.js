@@ -1,5 +1,3 @@
-import { isEmailTaken } from "./validators";
-import { v4 as uuidv4 } from "uuid";
 const createUser = async ({ parent, args, ctx, info }) => {
   const { prisma } = ctx;
   const emailExists = await prisma.exists.User({
